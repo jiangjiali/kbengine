@@ -1,0 +1,21 @@
+name: 构建KBE项目
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: configure
+      run: |
+       - sudo apt-get update
+       - sudo apt-get install libssl-dev
+       - sudo apt-get install libmysqlclient-dev
+    - name: make
+      run: cd kbe/src && make
+    - name: 上传APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: kbe
+        path: kbe/bin/server/*/**
