@@ -11,9 +11,11 @@ jobs:
       run: |
         sudo apt update
         sudo apt upgrade
-        sudo apt install -y libssl-dev mysql-client default-libmysqlclient-dev
+        sudo apt install -y gcc g++ g++-5 gcc-5 make autoconf libtool libmysqlclient-dev
         cd kbe/src/
         chmod -R 755 .
+        export CC=gcc-5
+        export CXX=g++-5
         make
     - name: 上传APK
       uses: actions/upload-artifact@v4
