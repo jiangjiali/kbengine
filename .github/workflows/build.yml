@@ -9,18 +9,11 @@ jobs:
     - uses: actions/checkout@v4
     - name: 构建项目
       run: |
-        deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
-        deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
-        deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
-        deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
-        deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
-        deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
-        deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
-        deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
-        deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
-        deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
-        gpg --keyserver keyserver.ubuntu.com --recv 3B4FE6ACC0B21F32
-        gpg --export --armor 3B4FE6ACC0B21F32 | apt-key add -
+        deb http://repo.mysql.com/apt/ubuntu/ bionic mysql-apt-config
+        deb http://repo.mysql.com/apt/ubuntu/ bionic mysql-5.7
+        deb http://repo.mysql.com/apt/ubuntu/ bionic mysql-tools
+        deb-src http://repo.mysql.com/apt/ubuntu/ bionic mysql-5.7
+        sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 76F1A20FF987672F
         sudo apt update
         sudo apt upgrade
         sudo apt install -y libssl-dev mysql-server-5.7 libmysqlclient-dev
