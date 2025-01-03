@@ -9,16 +9,4 @@ jobs:
     - uses: actions/checkout@v4
     - name: 安装依赖
       run: |
-        sudo apt update
-        sudo apt upgrade
-        sudo apt install -y libssl-dev mysql-server libmysqlclient-dev
-    - name: make
-      run: |
-        cd kbengine/keb/src/ && chmod -R 755 . && make
-        cd ../bin/
         ls
-    - name: 上传APK
-      uses: actions/upload-artifact@v4
-      with:
-        name: kbengine
-        path: kbengine/kbe/bin/server/*/**
