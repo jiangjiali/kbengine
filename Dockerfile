@@ -25,13 +25,8 @@ RUN set -eux; \
         curl \
         unzip \
         git \
-        gcc \
-        autoconf \
-        libtool \
         libssl-dev \
-        build-essential \
-        mysql-client \
-        default-libmysqlclient-dev \
+        libmysqlclient-dev \
     ; \
     rm -rf /var/lib/apt/lists/*; \
     \
@@ -41,6 +36,8 @@ RUN set -eux; \
     cd kbengine/kbe/src/; \
     chmod -R 755 .;\
     make; \
+    cd kbengine/kbe/bin/server/; \
+    ls; \
 # 清除系统缓存
     apt clean; \
     apt autoremove --purge
