@@ -1,16 +1,64 @@
-shallow_clone: true
+#注意事项：
+# 最小appveyor.yml文件是一个空文件。所有部分都是可选的。
+# 用2个空格缩进每一级配置。不要使用制表符！
+# 所有节名称都区分大小写。
+# 每个级别的节名称都应是唯一的。
+
+#-----------#
+#  通常配置  #
+#-----------#
+
+# 版本格式
+version: '{branch}-{build}'
+
+#不要再Tags上构建(仅仅GitHub)
+skip_tags: true
 
 branches:
   only:
     - master
-    - 1.x
 
-os:
-  - Visual Studio 2019
+# 环境变量
+# 构建系统信息: https://www.appveyor.com/docs/windows-images-software/
+os: Visual Studio 2019
 
 environment:
-  matrix:
-  - TOOLSET: vs2019
+  REPO_DIR: &REPO_DIR c:\project  # 创建的目录
+  TOOLSET: vs2019
 
-build:
-  project: kbe/src/kbengine.sln
+# 克隆目录
+clone_folder: *REPO_DIR
+
+#-----------#
+#  构建配置  #
+#-----------#
+
+# 构建
+build_script:
+  - msbuild "%REPO_DIR%\kbe\src\kbengine.sln"
+
+# 构建后
+after_build:
+  # 打包资源
+  - CD "%REPO_DIR%"
+  - MKDIR "x64"
+  - copy "%REPO_DIR%\kbe\bin\server\**\*.*" "x64"
+  - 7z a -sfx7z.sfx -mx9 "kbengine.exe" "x64"
+  - 'powershell -Command "& { $hash = (Get-FileHash -Algorithm SHA256 "kbengine.exe").hash.ToString().toLower(); Write-Host $hash " *kbengine.exe"; }" > "kbengine.exe.sha256"'
+
+#-----------#
+#  测试配置  #
+#-----------#
+
+# 禁用自动测试
+test: off
+
+#-----------#
+#  工件配置  #
+#-----------#
+
+artifacts:
+  - path: kbengine.exe
+    name: exe
+  - path: kbengine.exe.sha256
+    name: checksum
