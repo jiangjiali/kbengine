@@ -22,6 +22,7 @@ RUN set -eux; \
     apt-get install -y --no-install-recommends \
         ca-certificates \
         git \
+        make \
         libssl-dev \
         libmysqlclient-dev \
     ; \
