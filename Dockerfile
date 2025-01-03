@@ -21,9 +21,6 @@ RUN set -eux; \
 # 安装基础工具
     apt-get install -y --no-install-recommends \
         ca-certificates \
-        tzdata \
-        curl \
-        unzip \
         git \
         libssl-dev \
         libmysqlclient-dev \
