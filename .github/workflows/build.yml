@@ -4,15 +4,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-18
+    runs-on: windows-2019
     steps:
     - uses: actions/checkout@v4
-    - name: configure
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y libssl-dev mysql-server libmysqld-dev
     - name: make
-      run: cd kbe/src && make
+      run: msbuild kbe\src\kbengine_vs**.sln /t:Rebuild /p:Configuration=Release
     - name: 上传APK
       uses: actions/upload-artifact@v4
       with:
