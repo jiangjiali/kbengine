@@ -298,6 +298,8 @@ ifeq ($(KBE_CONFIG), Release)
 	CPPFLAGS += -DCODE_INLINE -D_RELEASE
 endif
 
+CPPFLAGS += -Wno-format-truncation
+
 ifneq (,$(findstring Hybrid,$(KBE_CONFIG)))
 	CXXFLAGS += -O3 -g
 	CPPFLAGS += -DCODE_INLINE -DKBE_USE_ASSERTS -D_HYBRID
