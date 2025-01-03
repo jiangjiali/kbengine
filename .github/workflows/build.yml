@@ -11,10 +11,7 @@ jobs:
       run: |
         sudo apt update
         sudo apt upgrade
-        wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb
-        sudo dpkg -i mysql-apt-config_0.8.22-1_all.deb
-        sudo apt update
-        sudo apt install -y libssl-dev mysql-server libmysqlclient-dev
+        sudo apt install -y libssl-dev mysql-server-5.7 libmysqlclient-dev
         cd kbe/src/
         chmod -R 755 .
         make CXXFLAGS += -O3
