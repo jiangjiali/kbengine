@@ -11,12 +11,10 @@ jobs:
       run: |
         sudo apt update
         sudo apt upgrade
-        sudo apt install -y libssl-dev libmysqlclient-dev
+        sudo apt install -y libssl-dev mysql-server libmysqlclient-dev
         cd kbe/src/
         chmod -R 755 .
         make CXXFLAGS += -O3
-        cd ../bin
-        ls
     - name: 上传APK
       uses: actions/upload-artifact@v4
       with:
