@@ -14,11 +14,11 @@ jobs:
         sudo apt install -y libssl-dev mysql-server libmysqlclient-dev
     - name: make
       run: |
-        cd keb/src/ && chmod -R 755 . && make
+        cd kbengine/keb/src/ && chmod -R 755 . && make
         cd ../bin/
         ls
     - name: 上传APK
       uses: actions/upload-artifact@v4
       with:
-        name: kbe
-        path: kbe/bin/server/*/**
+        name: kbengine
+        path: kbengine/kbe/bin/server/*/**
