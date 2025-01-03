@@ -29,7 +29,7 @@ RUN set -eux; \
     \
 # 拉取源码
     cd /root/;\
-    git clone git@github.com:jiangjiali/kbengine.git \
+    git clone https://github.com/jiangjiali/kbengine; \
     cd kbengine/kbe/src/; \
     chmod -R 755 .;\
     make; \
