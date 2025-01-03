@@ -11,11 +11,13 @@ jobs:
       run: |
         sudo apt update
         sudo apt upgrade
+        wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb
+        sudo dpkg -i mysql-apt-config_0.8.22-1_all.deb
+        sudo apt update
         sudo apt install -y libssl-dev mysql-server libmysqlclient-dev
-        ls
         cd kbe/src/
         chmod -R 755 .
-        make
+        make CXXFLAGS += -O3
         cd ../bin
         ls
     - name: 上传APK
