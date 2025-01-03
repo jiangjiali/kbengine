@@ -128,6 +128,8 @@ ifndef DISABLE_WATCHERS
 CPPFLAGS += -DENABLE_WATCHERS
 endif
 
+CPPFLAGS += -Wno-format-truncation
+
 ifdef USE_PYTHON
 USE_KBE_PYTHON = 1
 KBE_INCLUDES += -I $(KBE_ROOT)/kbe/src/lib/python/Include
@@ -297,8 +299,6 @@ ifeq ($(KBE_CONFIG), Release)
 	CXXFLAGS += -O3
 	CPPFLAGS += -DCODE_INLINE -D_RELEASE
 endif
-
-CPPFLAGS += -Wno-format-truncation
 
 ifneq (,$(findstring Hybrid,$(KBE_CONFIG)))
 	CXXFLAGS += -O3 -g
