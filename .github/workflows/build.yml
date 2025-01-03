@@ -11,7 +11,7 @@ jobs:
       run: |
         sudo apt update
         sudo apt upgrade
-        sudo apt install -y gcc g++ g++-5 gcc-5 make autoconf libtool libmysqlclient-dev
+        sudo apt install -y libtool libmysqlclient-dev
         cd kbe/src/
         chmod -R 755 .
         export CC=gcc-5
