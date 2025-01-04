@@ -42,7 +42,7 @@ after_build:
   # 打包资源
   - CD "%REPO_DIR%"
   - MKDIR "x64"
-  - copy "%REPO_DIR%\kbe\bin\server\**\*.*" "x64"
+  - copy "%REPO_DIR%\kbe\bin\server\" "x64"
   - 7z a -sfx7z.sfx -mx9 "kbengine.exe" "x64"
   - 'powershell -Command "& { $hash = (Get-FileHash -Algorithm SHA256 "kbengine.exe").hash.ToString().toLower(); Write-Host $hash " *kbengine.exe"; }" > "kbengine.exe.sha256"'
 
